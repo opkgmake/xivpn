@@ -75,7 +75,7 @@
     <string name="proxy_chain">Цепочка прокси</string>
     <string name="select_proxy">Выбрать прокси</string>
     <string name="proxy_chain_empty">Цепочка прокси не может быть пустой</string>
-    <string name="proxy_chain_not_found">Цепочка прокси \"%s\": прокси \"%s\" не найдена</string>
+    <string name="proxy_chain_not_found">Цепочка прокси \"%1$s\": прокси \"%2$s\" не найдена</string>
     <string name="proxy_chain_nesting_error">Цепочка прокси \"%s\": вложенные цепочки прокси не поддерживаются</string>
     <string name="import_form_clipboard">Импорт из буфера обмена</string>
     <string name="copy_share_link">Копировать ссылку для обмена</string>
@@ -127,7 +127,7 @@
     <string name="proxy_group_help">ПОДСКАЗКА ПО ГРУППЕ ПРОКСИ</string>
      <string name="proxy_group_cycle">Обнаружен цикл в группе прокси: </string>
     <string name="proxy_group_empty">Группа прокси не может быть пустой: </string>
-    <string name="proxy_group_not_found">Группа прокси \"%s\": прокси \"%s\" не найден</string>
+    <string name="proxy_group_not_found">Группа прокси \"%1$s\": прокси \"%2$s\" не найден</string>
     <string name="backup">Резервная копия</string>
     <string name="app">Приложение</string>
     <string name="backup_or_restore">Резервное копирование / Восстановление</string>
