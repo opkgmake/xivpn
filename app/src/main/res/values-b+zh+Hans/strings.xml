@@ -93,7 +93,7 @@
     <string name="dns_toolbox">DNS 工具箱</string>
     <string name="help">帮助</string>
     <string name="dns_toolbox_help">DNS 工具箱允许你使用 Android 系统 DNS 进行 DNS 查询</string>
-    <string name="name">Name</string>
+    <string name="name">名称</string>
     <string name="qtype">类型</string>
     <string name="qname">域名</string>
     <string name="dns_no_cache_lookup">不使用缓存</string>

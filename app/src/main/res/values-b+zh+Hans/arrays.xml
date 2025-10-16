@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="log_levels">
+        <item>错误</item>
+        <item>警告</item>
+        <item>信息</item>
+        <item>调试</item>
+    </string-array>
+    <string-array name="split_tunnel_modes">
+        <item>白名单</item>
+        <item>黑名单</item>
+    </string-array>
+    <string-array name="qtype">
+        <item>A</item>
+        <item>AAAA</item>
+    </string-array>
+</resources>
