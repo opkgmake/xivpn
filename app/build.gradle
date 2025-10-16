@@ -17,12 +17,26 @@ android {
     }
 
 
+    def releaseKeystoreFile = file("../sign/keystore.jks")
+    def releaseStorePassword = System.getenv("RELEASE_KEYSTORE_PASSWORD")?.trim()
+    def releaseKeyAlias = System.getenv("RELEASE_KEYSTORE_ALIAS")?.trim()
+    def releaseKeyPassword = System.getenv("RELEASE_KEY_PASSWORD")?.trim()
+    def hasReleaseSigning = releaseKeystoreFile.exists() &&
+            [releaseStorePassword, releaseKeyAlias, releaseKeyPassword].every { it }
+
     signingConfigs {
         githubaction {
-            storeFile file("../sign/keystore.jks")
-            storePassword System.getenv("RELEASE_KEYSTORE_PASSWORD")
-            keyAlias System.getenv("RELEASE_KEYSTORE_ALIAS")
-            keyPassword System.getenv("RELEASE_KEY_PASSWORD")
+            if (hasReleaseSigning) {
+                storeFile releaseKeystoreFile
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            } else {
+                def debugConfig = signingConfigs.findByName("debug")
+                if (debugConfig != null) {
+                    initWith(debugConfig)
+                }
+            }
         }
     }
 
