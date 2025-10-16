@@ -17,12 +17,27 @@ android {
     }
 
 
+    def releaseKeystoreFile = rootProject.file("sign/keystore.jks")
+    def releaseKeystorePassword = System.getenv("RELEASE_KEYSTORE_PASSWORD") ?: ""
+    def releaseKeyAlias = System.getenv("RELEASE_KEYSTORE_ALIAS") ?: ""
+    def releaseKeyPassword = System.getenv("RELEASE_KEY_PASSWORD") ?: ""
+    def hasReleaseSigning = releaseKeystoreFile.exists() &&
+            !releaseKeystorePassword.trim().isEmpty() &&
+            !releaseKeyAlias.trim().isEmpty() &&
+            !releaseKeyPassword.trim().isEmpty()
+
+    if (!hasReleaseSigning) {
+        logger.lifecycle("Release signing configuration is missing; falling back to the debug keystore.")
+    }
+
     signingConfigs {
-        githubaction {
-            storeFile file("../sign/keystore.jks")
-            storePassword System.getenv("RELEASE_KEYSTORE_PASSWORD")
-            keyAlias System.getenv("RELEASE_KEYSTORE_ALIAS")
-            keyPassword System.getenv("RELEASE_KEY_PASSWORD")
+        if (hasReleaseSigning) {
+            create("githubaction") {
+                storeFile releaseKeystoreFile
+                storePassword releaseKeystorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            }
         }
     }
 
@@ -45,8 +60,10 @@ android {
 
     flavorDimensions += "version"
     productFlavors {
+        def releaseSigningConfig = hasReleaseSigning ? signingConfigs.getByName("githubaction") : signingConfigs.getByName("debug")
+
         universal {
-            signingConfig signingConfigs.githubaction
+            signingConfig releaseSigningConfig
             ndk {
                 abiFilters "arm64-v8a", "x86_64", "armabi-v7a"
             }
@@ -54,7 +71,7 @@ android {
         }
 
         x86_64 {
-            signingConfig signingConfigs.githubaction
+            signingConfig releaseSigningConfig
             ndk {
                 abiFilters "x86_64"
             }
@@ -62,7 +79,7 @@ android {
         }
 
         arm64_v8a {
-            signingConfig signingConfigs.githubaction
+            signingConfig releaseSigningConfig
             ndk {
                 abiFilters "arm64-v8a"
             }
@@ -70,7 +87,7 @@ android {
         }
 
         armabi_v7a {
-            signingConfig signingConfigs.githubaction
+            signingConfig releaseSigningConfig
             ndk {
                 abiFilters "armeabi-v7a"
             }

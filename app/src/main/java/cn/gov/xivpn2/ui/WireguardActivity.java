@@ -95,7 +95,8 @@ public class WireguardActivity extends ProxyActivity<WireguardSettings> {
         hashMap.put("PEER_PUBLIC_KEY", outbound.settings.peers.get(0).publicKey);
         hashMap.put("PEER_PRE_SHARED_KEY", outbound.settings.peers.get(0).preSharedKey);
         hashMap.put("PEER_ALLOWED_IPS", String.join(",", outbound.settings.peers.get(0).allowedIPs));
-        hashMap.put("PEER_PERSISTENT_KEEPALIVE", String.valueOf(outbound.settings.peers.get(0).keepAlive));
+        int keepAlive = outbound.settings.peers.get(0).keepAlive;
+        hashMap.put("PEER_PERSISTENT_KEEPALIVE", keepAlive > 0 ? String.valueOf(keepAlive) : "");
 
         return hashMap;
     }
