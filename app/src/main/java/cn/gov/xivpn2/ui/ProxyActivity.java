@@ -299,8 +299,8 @@ public abstract class ProxyActivity<T> extends AppCompatActivity {
                         downloadStreamSettings.put("address", adapter.getValue("NETWORK_XHTTP_DOWNLOAD_ADDRESS"));
                         downloadStreamSettings.put("port", Integer.parseInt(adapter.getValue("NETWORK_XHTTP_DOWNLOAD_PORT")));
 
-                        Object network = downloadStreamSettings.get("network");
-                        if (network instanceof String && ((String) network).equals("xhttp")) {
+                        Object downloadNetwork = downloadStreamSettings.get("network");
+                        if (downloadNetwork instanceof String && ((String) downloadNetwork).equals("xhttp")) {
                             Map<String, Object> downloadXhttpSettings;
                             Object xhttpSettings = downloadStreamSettings.get("xhttpSettings");
                             if (xhttpSettings instanceof Map) {
