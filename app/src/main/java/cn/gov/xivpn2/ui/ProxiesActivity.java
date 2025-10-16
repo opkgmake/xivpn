@@ -109,6 +109,9 @@ public class ProxiesActivity extends AppCompatActivity {
                         case "wireguard":
                             cls = WireguardActivity.class;
                             break;
+                        case "xhttpstream":
+                            cls = XHttpStreamActivity.class;
+                            break;
                         case "proxy-chain":
                             cls = ProxyChainActivity.class;
                             break;
@@ -208,7 +211,7 @@ public class ProxiesActivity extends AppCompatActivity {
             view.requestFocus();
 
             return true;
-        } else if (item.getItemId() == R.id.shadowsocks || item.getItemId() == R.id.vmess || item.getItemId() == R.id.vless || item.getItemId() == R.id.trojan || item.getItemId() == R.id.wireguard || item.getItemId() == R.id.proxy_chain || item.getItemId() == R.id.proxy_group) {
+        } else if (item.getItemId() == R.id.shadowsocks || item.getItemId() == R.id.vmess || item.getItemId() == R.id.vless || item.getItemId() == R.id.trojan || item.getItemId() == R.id.xhttpstream || item.getItemId() == R.id.wireguard || item.getItemId() == R.id.proxy_chain || item.getItemId() == R.id.proxy_group) {
 
             // add
 
@@ -235,6 +238,8 @@ public class ProxiesActivity extends AppCompatActivity {
                             cls = VlessActivity.class;
                         } else if (item.getItemId() == R.id.trojan) {
                             cls = TrojanActivity.class;
+                        } else if (item.getItemId() == R.id.xhttpstream) {
+                            cls = XHttpStreamActivity.class;
                         } else if (item.getItemId() == R.id.wireguard) {
                             cls = WireguardActivity.class;
                         } else if (item.getItemId() == R.id.proxy_chain) {
@@ -243,10 +248,12 @@ public class ProxiesActivity extends AppCompatActivity {
                             cls = ProxyGroupActivity.class;
                         }
 
-                        Intent intent = new Intent(this, cls);
-                        intent.putExtra("LABEL", label);
-                        intent.putExtra("SUBSCRIPTION", "none");
-                        startActivity(intent);
+                        if (cls != null) {
+                            Intent intent = new Intent(this, cls);
+                            intent.putExtra("LABEL", label);
+                            intent.putExtra("SUBSCRIPTION", "none");
+                            startActivity(intent);
+                        }
 
                     }).show();
 

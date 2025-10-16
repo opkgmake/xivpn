@@ -6,18 +6,17 @@ import java.lang.reflect.Type;
 import java.util.LinkedHashMap;
 
 import cn.gov.xivpn2.xrayconfig.Outbound;
-import cn.gov.xivpn2.xrayconfig.XHttpSettings;
 import cn.gov.xivpn2.xrayconfig.XHttpStream;
 
-public class XHttpStreamActivity extends ProxyActivity<XHttpSettings> {
+public class XHttpStreamActivity extends ProxyActivity<XHttpStream> {
 
     @Override
-    protected XHttpSettings buildProtocolSettings(IProxyEditor adapter) {
-        return new XHttpSettings();
+    protected XHttpStream buildProtocolSettings(IProxyEditor adapter) {
+        return new XHttpStream();
     }
 
     @Override
-    protected LinkedHashMap<String, String> decodeOutboundConfig(Outbound<XHttpSettings> outbound) {
+    protected LinkedHashMap<String, String> decodeOutboundConfig(Outbound<XHttpStream> outbound) {
         return super.decodeOutboundConfig(outbound);
     }
 
@@ -33,13 +32,8 @@ public class XHttpStreamActivity extends ProxyActivity<XHttpSettings> {
     }
 
     @Override
-    protected void initializeInputs(IProxyEditor adapter) {
-    }
-
-    @Override
     protected void afterInitializeInputs(IProxyEditor adapter) {
-        adapter.removeInputByPrefix("NETWORK");
-        adapter.removeInputByPrefix("GROUP");
+        adapter.removeInput("GROUP_PROXY");
     }
 
     @Override

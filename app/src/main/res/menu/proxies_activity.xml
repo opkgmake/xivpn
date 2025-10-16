@@ -30,6 +30,10 @@
                 android:icon="@drawable/lock_check_outline"
                 android:title="Trojan" />
             <item
+                android:id="@+id/xhttpstream"
+                android:icon="@drawable/baseline_cloud_24"
+                android:title="XHTTP Stream" />
+            <item
                 android:id="@+id/wireguard"
                 android:icon="@drawable/baseline_vpn_key_24"
                 android:title="Wireguard" />
