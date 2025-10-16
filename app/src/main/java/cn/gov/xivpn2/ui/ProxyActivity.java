@@ -479,7 +479,7 @@ public abstract class ProxyActivity<T> extends AppCompatActivity {
                     case "xhttp":
                         adapter.addInputAfter("NETWORK", "NETWORK_XHTTP_HOST", "XHTTP Host", "");
                         adapter.addInputAfter("NETWORK", "NETWORK_XHTTP_PATH", "XHTTP Path", "/");
-                        adapter.addInputAfter("NETWORK", "NETWORK_XHTTP_MODE", "XHTTP Mode", List.of("packet-up", "stream-up", "auto", "stream-one"));
+                        adapter.addInputAfter("NETWORK", "NETWORK_XHTTP_MODE", "XHTTP Mode", List.of("auto", "packet-up", "stream-up", "stream-one"));
                         break;
                 }
                 break;

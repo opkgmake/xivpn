@@ -27,6 +27,11 @@ public class XHttpStreamActivity extends ProxyActivity<XHttpStream> {
     }
 
     @Override
+    protected void initializeInputs(IProxyEditor adapter) {
+        // The XHTTP stream outbound does not expose any protocol specific fields.
+    }
+
+    @Override
     protected String getProtocolName() {
         return "xhttpstream";
     }
@@ -38,6 +43,10 @@ public class XHttpStreamActivity extends ProxyActivity<XHttpStream> {
         adapter.notifyValueChanged("NETWORK");
         adapter.setValue("SECURITY", "none");
         adapter.notifyValueChanged("SECURITY");
+        if (adapter.exists("NETWORK_XHTTP_MODE")) {
+            adapter.setValue("NETWORK_XHTTP_MODE", "auto");
+            adapter.notifyValueChanged("NETWORK_XHTTP_MODE");
+        }
     }
 
     @Override

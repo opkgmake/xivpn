@@ -55,7 +55,7 @@ public class VlessActivity extends ProxyActivity<VlessSettings> {
         if (!flow.equals("none")) {
             user.flow = flow;
         } else {
-            user.flow = "";
+            user.flow = null;
         }
         String encryptionValue = adapter.getValue("ENCRYPTION");
         if (encryptionValue == null || encryptionValue.isEmpty()) {
@@ -105,7 +105,7 @@ public class VlessActivity extends ProxyActivity<VlessSettings> {
         adapter.addInput("PORT", "Port");
         adapter.addInput("FLOW", "Flow", List.of("none", "xtls-rprx-vision", "xtls-rprx-vision-udp443", "xtls-rprx-vision-udp443-uplink", "xtls-rprx-vision-udp443-downlink"));
         adapter.addInput("UUID", "UUID");
-        adapter.addInput("ENCRYPTION", "Encryption", "none");
+        adapter.addInput("ENCRYPTION", "Encryption", List.of("none", "aes-128-gcm", "chacha20-poly1305", "zero"));
         adapter.addInput("LEVEL", "User Level", "0");
     }
 }
