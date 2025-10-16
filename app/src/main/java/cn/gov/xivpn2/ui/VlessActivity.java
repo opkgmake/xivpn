@@ -22,6 +22,15 @@ public class VlessActivity extends ProxyActivity<VlessSettings> {
                 return !value.isEmpty();
             case "PORT":
                 return Utils.isValidPort(value);
+            case "LEVEL":
+                try {
+                    Integer.parseInt(value);
+                } catch (NumberFormatException e) {
+                    return false;
+                }
+                return true;
+            case "ENCRYPTION":
+                return !value.isEmpty();
         }
         return super.validateField(key, value);
     }
@@ -48,6 +57,13 @@ public class VlessActivity extends ProxyActivity<VlessSettings> {
         } else {
             user.flow = "";
         }
+        String encryptionValue = adapter.getValue("ENCRYPTION");
+        if (encryptionValue == null || encryptionValue.isEmpty()) {
+            user.encryption = "none";
+        } else {
+            user.encryption = encryptionValue;
+        }
+        user.level = Integer.parseInt(adapter.getValue("LEVEL"));
         vnext.users.add(user);
 
         vlessSettings.vnext.add(vnext);
@@ -68,6 +84,13 @@ public class VlessActivity extends ProxyActivity<VlessSettings> {
             hashMap.put("FLOW", flow);
         }
         hashMap.put("UUID", vnext.users.get(0).id);
+        String encryption = vnext.users.get(0).encryption;
+        if (encryption == null || encryption.isEmpty()) {
+            hashMap.put("ENCRYPTION", "none");
+        } else {
+            hashMap.put("ENCRYPTION", encryption);
+        }
+        hashMap.put("LEVEL", String.valueOf(vnext.users.get(0).level));
         return hashMap;
     }
 
@@ -80,7 +103,9 @@ public class VlessActivity extends ProxyActivity<VlessSettings> {
     protected void initializeInputs(IProxyEditor adapter) {
         adapter.addInput("ADDRESS", "Address");
         adapter.addInput("PORT", "Port");
-        adapter.addInput("FLOW", "Flow", List.of("none", "xtls-rprx-vision", "xtls-rprx-vision-udp443"));
+        adapter.addInput("FLOW", "Flow", List.of("none", "xtls-rprx-vision", "xtls-rprx-vision-udp443", "xtls-rprx-vision-udp443-uplink", "xtls-rprx-vision-udp443-downlink"));
         adapter.addInput("UUID", "UUID");
+        adapter.addInput("ENCRYPTION", "Encryption", "none");
+        adapter.addInput("LEVEL", "User Level", "0");
     }
 }

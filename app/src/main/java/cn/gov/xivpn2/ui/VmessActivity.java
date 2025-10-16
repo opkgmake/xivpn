@@ -22,6 +22,13 @@ public class VmessActivity extends ProxyActivity<VmessSettings> {
                 return !value.isEmpty();
             case "PORT":
                 return Utils.isValidPort(value);
+            case "LEVEL":
+                try {
+                    Integer.parseInt(value);
+                } catch (NumberFormatException e) {
+                    return false;
+                }
+                return true;
         }
         return super.validateField(key, value);
     }
@@ -43,6 +50,7 @@ public class VmessActivity extends ProxyActivity<VmessSettings> {
         VmessUser user = new VmessUser();
         user.id = adapter.getValue("UUID");
         user.security = adapter.getValue("VMESS_SECURITY");
+        user.level = Integer.parseInt(adapter.getValue("LEVEL"));
         vnext.users.add(user);
 
         vmessSettings.vnext.add(vnext);
@@ -58,6 +66,7 @@ public class VmessActivity extends ProxyActivity<VmessSettings> {
         hashMap.put("PORT", String.valueOf(vnext.port));
         hashMap.put("VMESS_SECURITY", vnext.users.get(0).security);
         hashMap.put("UUID", vnext.users.get(0).id);
+        hashMap.put("LEVEL", String.valueOf(vnext.users.get(0).level));
         return hashMap;
     }
 
@@ -72,5 +81,6 @@ public class VmessActivity extends ProxyActivity<VmessSettings> {
         adapter.addInput("PORT", "Port");
         adapter.addInput("VMESS_SECURITY", "VMESS Security", List.of("auto", "aes-128-gcm", "chacha20-poly1305", "none", "zero"));
         adapter.addInput("UUID", "UUID");
+        adapter.addInput("LEVEL", "User Level", "0");
     }
 }

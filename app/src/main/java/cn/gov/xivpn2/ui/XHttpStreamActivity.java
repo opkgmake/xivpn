@@ -34,6 +34,10 @@ public class XHttpStreamActivity extends ProxyActivity<XHttpStream> {
     @Override
     protected void afterInitializeInputs(IProxyEditor adapter) {
         adapter.removeInput("GROUP_PROXY");
+        adapter.setValue("NETWORK", "xhttp");
+        adapter.notifyValueChanged("NETWORK");
+        adapter.setValue("SECURITY", "none");
+        adapter.notifyValueChanged("SECURITY");
     }
 
     @Override
