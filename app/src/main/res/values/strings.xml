@@ -5,6 +5,11 @@
     <string name="proxies">Proxies</string>
     <string name="timeout">Timeout</string>
     <string name="add">Add</string>
+    <string name="menu_shadowsocks">Shadowsocks</string>
+    <string name="menu_vmess">VMess</string>
+    <string name="menu_vless">VLESS</string>
+    <string name="menu_trojan">Trojan</string>
+    <string name="menu_wireguard">WireGuard</string>
     <string name="save">Save</string>
     <string name="label">Label</string>
     <string name="ok">OK</string>

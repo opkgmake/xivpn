@@ -5,6 +5,11 @@
     <string name="proxies">代理服务器</string>
     <string name="timeout">超时</string>
     <string name="add">添加</string>
+    <string name="menu_shadowsocks">Shadowsocks（影梭）</string>
+    <string name="menu_vmess">VMess 协议</string>
+    <string name="menu_vless">VLESS 协议</string>
+    <string name="menu_trojan">Trojan 协议</string>
+    <string name="menu_wireguard">WireGuard 协议</string>
     <string name="save">保存</string>
     <string name="label">标签</string>
     <string name="ok">OK</string>
