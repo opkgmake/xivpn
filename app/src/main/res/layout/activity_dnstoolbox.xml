@@ -39,12 +39,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <AutoCompleteTextView
-                    android:text="A"
                     app:simpleItems="@array/qtype"
                     android:id="@+id/qtype"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none" />
+                    android:inputType="none"
+                    tools:text="A" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

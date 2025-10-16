@@ -77,6 +77,11 @@
     <string name="proxy_chain_empty">Proxy chain must not be empty</string>
     <string name="proxy_chain_not_found">Proxy chain \"%1$s\": proxy \"%2$s\" not found</string>
     <string name="proxy_chain_nesting_error">Proxy chain \"%s\": Nested proxy chains are not supported</string>
+    <string name="proxy_type_shadowsocks">Shadowsocks</string>
+    <string name="proxy_type_vmess">VMess</string>
+    <string name="proxy_type_vless">VLESS</string>
+    <string name="proxy_type_trojan">Trojan</string>
+    <string name="proxy_type_wireguard">WireGuard</string>
     <string name="import_form_clipboard">Import from clipboard</string>
     <string name="copy_share_link">Copy share link</string>
     <string name="share_link_example">ss://</string>
@@ -141,6 +146,7 @@
     <string name="backup_error">"Backup error: "</string>
     <string name="restore_error">"Restore error: "</string>
     <string name="restore_finished">Restore finished</string>
+    <string name="transport_settings_title">Transport settings</string>
     <string name="proxies_help">The highlighted proxy is the catch-all proxy. By default, all traffic is routed through it unless overridden by specific routing rules.</string>
     <string name="unsaved_changes">You have unsaved changes</string>
     <string name="cancel">Cancel</string>

@@ -53,6 +53,7 @@
     <string name="sniffing_route_only">探测仅路由</string>
     <string name="sniffing_route_only_summary">保留原始目标地址并仅使用探测到的域名进行路由。</string>
     <string name="geoip_geosite">Geoip / Geosite</string>
+    <string name="geoip_geosite_summary">下载 GEOIP / GEOSITE 数据库</string>
     <string name="ipinfo_geoip_ru">ipinfo_geoip_ru</string>
     <string name="custom">自定义</string>
     <string name="custom_geoip_hint">输入 Geoip 文件的 URL</string>
@@ -77,6 +78,11 @@
     <string name="proxy_chain_empty">链式代理不能为空</string>
     <string name="proxy_chain_not_found">链式代理 %1$s: 代理 %2$s 不存在</string>
     <string name="proxy_chain_nesting_error">链式代理 %s: 不支持嵌套链式代理</string>
+    <string name="proxy_type_shadowsocks">Shadowsocks</string>
+    <string name="proxy_type_vmess">VMess</string>
+    <string name="proxy_type_vless">VLESS</string>
+    <string name="proxy_type_trojan">Trojan</string>
+    <string name="proxy_type_wireguard">WireGuard</string>
     <string name="import_form_clipboard">从剪切板导入</string>
     <string name="copy_share_link">复制分享连接</string>
     <string name="share_link_example">ss://</string>
@@ -124,6 +130,7 @@
     <string name="protocol_unsupported">暂不支持协议 "%1$s"</string>
     <string name="proxy_chain_help">链式代理允许你将多个代理服务器串联起来。列表中的第一个服务器是入口服务器，最后一个服务器是出口服务器。之间的所有服务器都是中继服务器（类似 Tor 的多跳）。</string>
     <string name="proxy_group">代理组</string>
+    <string name="proxy_group_help">可以把多个服务器组合成代理组，并在配置中引用（例如路由规则、默认出站或链式代理）。\n\n生成 Xray 配置时，代理组会被替换成该组当前选中的服务器。你可以在主界面切换选中项。\n\n代理组可以包含其它代理组，但不允许出现循环引用。</string>
     <string name="proxy_group_cycle">代理组中出现回环：</string>
     <string name="proxy_group_empty">代理组不能为空：</string>
     <string name="proxy_group_not_found">代理组 \"%1$s\": 代理 \"%2$s\" 不存在</string>
@@ -138,6 +145,12 @@
     <string name="restore_error">还原失败：</string>
     <string name="restore_finished">还原完成</string>
     <string name="proxies_help">选择默认出站。会处理所有未匹配规则的流量。</string>
+    <string name="unsaved_changes">你有未保存的更改</string>
+    <string name="cancel">取消</string>
+    <string name="discard_changes">放弃更改</string>
+    <string name="ipv6">IPv6</string>
+    <string name="ipv6_summary">向 VPN 网卡添加 IPv6 地址和路由。</string>
+    <string name="transport_settings_title">传输设置</string>
     <string name="wireguard_address1_label">地址 1</string>
     <string name="wireguard_address1_helper">本地地址（IPv4 CIDR）</string>
     <string name="wireguard_address2_label">地址 2</string>

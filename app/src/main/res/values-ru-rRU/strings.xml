@@ -77,6 +77,11 @@
     <string name="proxy_chain_empty">Цепочка прокси не может быть пустой</string>
     <string name="proxy_chain_not_found">Цепочка прокси \"%1$s\": прокси \"%2$s\" не найдена</string>
     <string name="proxy_chain_nesting_error">Цепочка прокси \"%s\": вложенные цепочки прокси не поддерживаются</string>
+    <string name="proxy_type_shadowsocks">Shadowsocks</string>
+    <string name="proxy_type_vmess">VMess</string>
+    <string name="proxy_type_vless">VLESS</string>
+    <string name="proxy_type_trojan">Trojan</string>
+    <string name="proxy_type_wireguard">WireGuard</string>
     <string name="import_form_clipboard">Импорт из буфера обмена</string>
     <string name="copy_share_link">Копировать ссылку для обмена</string>
     <string name="share_link_example">ss://</string>
@@ -124,7 +129,7 @@
     <string name="protocol_unsupported">Протокол "%1$s" не поддерживается</string>
     <string name="proxy_chain_help">Цепочка прокси позволяет использовать последовательность серверов.\n\nПервый сервер — входной, последний — выходной. Всё между ними — промежуточные узлы (как в Tor).</string>
     <string name="proxy_group">Группа прокси</string>
-    <string name="proxy_group_help">ПОДСКАЗКА ПО ГРУППЕ ПРОКСИ</string>
+    <string name="proxy_group_help">Вы можете объединять серверы в группы и использовать такие группы в конфигурации (например, для правил, основного исходящего прокси или цепочек).\n\nПри построении конфигурации Xray группы будут заменены выбранным сервером в каждой группе. Вы можете сменить выбранный сервер на главном экране.\n\nГруппы могут включать другие группы, но циклические ссылки (когда группа опосредованно содержит саму себя) не допускаются.</string>
      <string name="proxy_group_cycle">Обнаружен цикл в группе прокси: </string>
     <string name="proxy_group_empty">Группа прокси не может быть пустой: </string>
     <string name="proxy_group_not_found">Группа прокси \"%1$s\": прокси \"%2$s\" не найден</string>
@@ -139,6 +144,7 @@
     <string name="restore_error">Ошибка восстановления: </string>
     <string name="restore_finished">Восстановление завершено</string>
     <string name="proxies_help">Выделенный прокси — прокси по умолчанию. По умолчанию весь трафик направляется через него, если нет других правил маршрутизации.</string>
+    <string name="transport_settings_title">Настройки транспорта</string>
     <string name="wireguard_address1_label">Адрес 1</string>
     <string name="wireguard_address1_helper">Локальный адрес (IPv4 CIDR)</string>
     <string name="wireguard_address2_label">Адрес 2</string>

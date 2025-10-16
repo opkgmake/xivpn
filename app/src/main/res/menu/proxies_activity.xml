@@ -16,23 +16,23 @@
             <item
                 android:id="@+id/shadowsocks"
                 android:icon="@drawable/paper_plane_regular"
-                android:title="Shadowsocks" />
+                android:title="@string/proxy_type_shadowsocks" />
             <item
                 android:id="@+id/vmess"
                 android:icon="@drawable/alpha_v_circle_outline"
-                android:title="VMESS" />
+                android:title="@string/proxy_type_vmess" />
             <item
                 android:id="@+id/vless"
                 android:icon="@drawable/alpha_v_circle_outline"
-                android:title="VLESS" />
+                android:title="@string/proxy_type_vless" />
             <item
                 android:id="@+id/trojan"
                 android:icon="@drawable/lock_check_outline"
-                android:title="Trojan" />
+                android:title="@string/proxy_type_trojan" />
             <item
                 android:id="@+id/wireguard"
                 android:icon="@drawable/baseline_vpn_key_24"
-                android:title="Wireguard" />
+                android:title="@string/proxy_type_wireguard" />
             <item
                 android:id="@+id/proxy_group"
                 android:icon="@drawable/list_with_checkmark"
