@@ -138,4 +138,19 @@
     <string name="restore_error">还原失败：</string>
     <string name="restore_finished">还原完成</string>
     <string name="proxies_help">选择默认出站。会处理所有未匹配规则的流量。</string>
+    <string name="wireguard_address1_label">地址 1</string>
+    <string name="wireguard_address1_helper">本地地址（IPv4 CIDR）</string>
+    <string name="wireguard_address2_label">地址 2</string>
+    <string name="wireguard_address2_helper">本地地址（IPv6 CIDR）</string>
+    <string name="wireguard_private_key_label">私钥</string>
+    <string name="wireguard_public_key_label">公钥</string>
+    <string name="wireguard_reserved_label">预留</string>
+    <string name="wireguard_reserved_helper">格式：0,0,0</string>
+    <string name="wireguard_peer_endpoint_label">对端地址</string>
+    <string name="wireguard_peer_endpoint_helper">示例：engage.cloudflareclient.com:2408</string>
+    <string name="wireguard_peer_public_key_label">对端公钥</string>
+    <string name="wireguard_peer_pre_shared_key_label">预共享密钥</string>
+    <string name="wireguard_allowed_ips_label">允许的 IP</string>
+    <string name="wireguard_persistent_keepalive_label">持久保活</string>
+    <string name="wireguard_persistent_keepalive_helper">单位为秒，留空表示禁用。</string>
 </resources>
