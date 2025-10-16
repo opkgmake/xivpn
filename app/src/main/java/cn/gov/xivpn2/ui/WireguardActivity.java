@@ -27,6 +27,13 @@ public class WireguardActivity extends ProxyActivity<WireguardSettings> {
                 return !value.isEmpty();
             case "RESERVED_PATTERN":
                 return RESERVED_PATTERN.matcher(value).find();
+            case "PEER_PERSISTENT_KEEPALIVE":
+                try {
+                    int keepAlive = Integer.parseInt(value);
+                    return keepAlive >= 0 && keepAlive <= 65535;
+                } catch (NumberFormatException ignored) {
+                    return false;
+                }
         }
         return super.validateField(key, value);
     }
@@ -57,6 +64,7 @@ public class WireguardActivity extends ProxyActivity<WireguardSettings> {
         peer.publicKey = adapter.getValue("PEER_PUBLIC_KEY");
         peer.preSharedKey = adapter.getValue("PEER_PRE_SHARED_KEY");
         peer.allowedIPs = adapter.getValue("PEER_ALLOWED_IPS").split(",");
+        peer.keepAlive = Integer.parseInt(adapter.getValue("PEER_PERSISTENT_KEEPALIVE"));
         wireguardSettings.peers.add(peer);
 
         return wireguardSettings;
@@ -80,6 +88,7 @@ public class WireguardActivity extends ProxyActivity<WireguardSettings> {
         hashMap.put("PEER_PUBLIC_KEY", outbound.settings.peers.get(0).publicKey);
         hashMap.put("PEER_PRE_SHARED_KEY", outbound.settings.peers.get(0).preSharedKey);
         hashMap.put("PEER_ALLOWED_IPS", String.join(",", outbound.settings.peers.get(0).allowedIPs));
+        hashMap.put("PEER_PERSISTENT_KEEPALIVE", String.valueOf(outbound.settings.peers.get(0).keepAlive));
 
         return hashMap;
     }
@@ -114,6 +123,7 @@ public class WireguardActivity extends ProxyActivity<WireguardSettings> {
         adapter.addInput("PEER_PUBLIC_KEY", "Peer Public Key");
         adapter.addInput("PEER_PRE_SHARED_KEY", "Peer Pre Shared Key");
         adapter.addInput("PEER_ALLOWED_IPS", "Allowed IPs", "0.0.0.0/0,::/0");
+        adapter.addInput("PEER_PERSISTENT_KEEPALIVE", "Persistent Keepalive", "25", "Seconds (0 to disable)");
     }
 
     /**

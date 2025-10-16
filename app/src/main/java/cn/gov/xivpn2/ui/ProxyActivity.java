@@ -293,13 +293,25 @@ public abstract class ProxyActivity<T> extends AppCompatActivity {
                     Gson gson = new GsonBuilder().create();
                     Map<String, Object> downloadConfig = gson.fromJson(xhttpDownload, type);
                     if (downloadConfig.get("streamSettings") instanceof Map) {
-                        outbound.streamSettings.xHttpSettings.downloadSettings = ((Map<String, Object>) downloadConfig.get("streamSettings"));
-                        outbound.streamSettings.xHttpSettings.downloadSettings.put("network", "xhttp");
-                        outbound.streamSettings.xHttpSettings.downloadSettings.put("address", adapter.getValue("NETWORK_XHTTP_DOWNLOAD_ADDRESS"));
-                        outbound.streamSettings.xHttpSettings.downloadSettings.put("port", Integer.parseInt(adapter.getValue("NETWORK_XHTTP_DOWNLOAD_PORT")));
-                        Map<String, String> downloadXhttpSettings = new HashMap<>();
-                        downloadXhttpSettings.put("path", adapter.getValue("NETWORK_XHTTP_PATH"));
-                        outbound.streamSettings.xHttpSettings.downloadSettings.put("xhttpSettings", downloadXhttpSettings);
+                        Map<String, Object> originalStreamSettings = (Map<String, Object>) downloadConfig.get("streamSettings");
+                        Map<String, Object> downloadStreamSettings = new HashMap<>(originalStreamSettings);
+                        outbound.streamSettings.xHttpSettings.downloadSettings = downloadStreamSettings;
+                        downloadStreamSettings.put("address", adapter.getValue("NETWORK_XHTTP_DOWNLOAD_ADDRESS"));
+                        downloadStreamSettings.put("port", Integer.parseInt(adapter.getValue("NETWORK_XHTTP_DOWNLOAD_PORT")));
+
+                        Object downloadNetwork = downloadStreamSettings.get("network");
+                        if (downloadNetwork instanceof String && ((String) downloadNetwork).equals("xhttp")) {
+                            Map<String, Object> downloadXhttpSettings;
+                            Object xhttpSettings = downloadStreamSettings.get("xhttpSettings");
+                            if (xhttpSettings instanceof Map) {
+                                downloadXhttpSettings = new HashMap<>((Map<String, Object>) xhttpSettings);
+                            } else {
+                                downloadXhttpSettings = new HashMap<>();
+                            }
+                            downloadXhttpSettings.put("path", adapter.getValue("NETWORK_XHTTP_PATH"));
+                            downloadXhttpSettings.put("host", adapter.getValue("NETWORK_XHTTP_HOST"));
+                            downloadStreamSettings.put("xhttpSettings", downloadXhttpSettings);
+                        }
                     }
                 }
         }
@@ -384,23 +396,25 @@ public abstract class ProxyActivity<T> extends AppCompatActivity {
                 initials.put("NETWORK_HTTPUPGRADE_HOST", outbound.streamSettings.httpupgradeSettings.host);
                 break;
             case "xhttp":
-                if (inline) break;
-                initials.put("NETWORK_XHTTP_MODE", outbound.streamSettings.xHttpSettings.mode);
-                initials.put("NETWORK_XHTTP_PATH", outbound.streamSettings.xHttpSettings.path);
-                initials.put("NETWORK_XHTTP_HOST", outbound.streamSettings.xHttpSettings.host);
-                if (outbound.streamSettings.xHttpSettings.downloadSettings != null) {
-                    initials.put("NETWORK_XHTTP_SEPARATE_DOWNLOAD", "True");
-                    initials.put("NETWORK_XHTTP_DOWNLOAD_ADDRESS", ((String) outbound.streamSettings.xHttpSettings.downloadSettings.get("address")));
-                    initials.put("NETWORK_XHTTP_DOWNLOAD_PORT", (String.valueOf(((Double) outbound.streamSettings.xHttpSettings.downloadSettings.get("port")).intValue())));
+                if (outbound.streamSettings.xHttpSettings != null) {
+                    initials.put("NETWORK_XHTTP_MODE", outbound.streamSettings.xHttpSettings.mode);
+                    initials.put("NETWORK_XHTTP_PATH", outbound.streamSettings.xHttpSettings.path);
+                    initials.put("NETWORK_XHTTP_HOST", outbound.streamSettings.xHttpSettings.host);
 
-                    JsonObject downloadOutbound = new JsonObject();
-                    downloadOutbound.addProperty("protocol", "xhttpstream");
-                    downloadOutbound.add("settings", new JsonObject());
-                    JsonObject downloadStream = new Gson().toJsonTree(outbound.streamSettings.xHttpSettings.downloadSettings).getAsJsonObject();
-                    downloadOutbound.add("streamSettings", downloadStream);
-                    xhttpDownload = new Gson().toJson(downloadOutbound);
+                    if (!inline && outbound.streamSettings.xHttpSettings.downloadSettings != null) {
+                        initials.put("NETWORK_XHTTP_SEPARATE_DOWNLOAD", "True");
+                        initials.put("NETWORK_XHTTP_DOWNLOAD_ADDRESS", ((String) outbound.streamSettings.xHttpSettings.downloadSettings.get("address")));
+                        initials.put("NETWORK_XHTTP_DOWNLOAD_PORT", (String.valueOf(((Double) outbound.streamSettings.xHttpSettings.downloadSettings.get("port")).intValue())));
 
-                    Log.i(TAG, "decode xhttp: " + xhttpDownload);
+                        JsonObject downloadOutbound = new JsonObject();
+                        downloadOutbound.addProperty("protocol", "xhttpstream");
+                        downloadOutbound.add("settings", new JsonObject());
+                        JsonObject downloadStream = new Gson().toJsonTree(outbound.streamSettings.xHttpSettings.downloadSettings).getAsJsonObject();
+                        downloadOutbound.add("streamSettings", downloadStream);
+                        xhttpDownload = new Gson().toJson(downloadOutbound);
+
+                        Log.i(TAG, "decode xhttp: " + xhttpDownload);
+                    }
                 }
                 break;
         }

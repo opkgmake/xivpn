@@ -38,8 +38,10 @@ public class XHttpStreamActivity extends ProxyActivity<XHttpSettings> {
 
     @Override
     protected void afterInitializeInputs(IProxyEditor adapter) {
-        adapter.removeInputByPrefix("NETWORK");
-        adapter.removeInputByPrefix("GROUP");
+        adapter.removeInput("GROUP_PROXY");
+        adapter.removeInput("GROUP_MUX");
+        adapter.removeInput("MUX_ENABLED");
+        adapter.removeInputByPrefix("MUX_");
     }
 
     @Override
